@@ -1,23 +1,39 @@
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.*;
 
 public class BST {
 
     private Node root;
     private int size;
+	
+	public static void main(String[] args){
+		BST bst = new BST();
+		System.out.println(bst.height());
+		int[] values = new int[]{41,20,11,29,
+    		32,65,50,91,72,99};
+    	for (int i : values)
+    		bst.add(i);
+		System.out.println(bst.isAVL());
+	}
 
+	//último método
     public boolean isAVL() {
-        //TODO: implementar
-        return false;
+        return isAVL(this.root);
     }
+
+	public boolean isAVL(Node node) {
+		if(node == null) return true;
+		if(Math.abs(balance(node)) > 1) return false;
+		return isAVL(node.left) && isAVL(node.right);
+	}
 
     /**
      * Retorna a altura da árvore.
      */
     public int height() {
-        //TODO implementar
-        return -1;
+        return height(this.root);
     }
 
     /**
@@ -25,11 +41,12 @@ public class BST {
      * para recursão e para o balance.
      */
     private int height(Node node) {
-        return -1;
+		if(node == null) return -1;
+        return 1 + Math.max(height(node.left), height(node.right));
     }
 
     private int balance(Node node) {
-        return -1;
+        return height(node.left) - height(node.right);
     }
 
     /**

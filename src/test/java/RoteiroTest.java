@@ -3,6 +3,13 @@ import org.junit.jupiter.api.Test;
 
 public class RoteiroTest {
     	
+	@Test
+	public void testHeight() {
+		BST bst = new BST();
+		assertEquals(-1, bst.height());
+	}
+
+
     @Test
     public void testIsAVL() {
     	BST bst = new BST();
